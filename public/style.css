@@ -1,0 +1,152 @@
+/* Background image and container settings */
+.home-bg-img {
+    background-image: url(bgimg1.jpg);
+    height: 100vh;
+    width: 100vw;
+    padding-top: 72px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Navbar styling */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logo {
+    height: 80px;
+    width: 80px;
+}
+
+.navbar-toggler {
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    /* background-color: ; */
+    position: relative;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s;
+}
+
+/* Navigation links styling */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-item {
+    list-style-type: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #0d6efd;
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Button styles */
+.navbtn1 {
+    background: transparent;
+    border: none;
+    color: white;
+    font-weight: bold;
+}
+
+.navbtn2 {
+    background-color: #8A5536;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.main-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card-body {
+    text-align: center;
+    color: white;
+    font-family: 'Delius', cursive;
+}
+
+.card-body h2 {
+    font-size: 2.5em;
+    margin-bottom: 1.5rem;
+}
+
+.card-body h5 {
+    font-size: 1.2em;
+    margin-bottom: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.main-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    color: white;
+    background-color: #8A5536;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.main-btn:hover {
+    background-color: #6e4428;
+}

@@ -1,0 +1,204 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap");
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  width: 100%;
+  margin-inline: auto;
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: 100;
+}
+
+.nav {
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav__logo {
+  color: #ffffff;
+  font-weight: 500;
+  margin-left: 1.5rem; /* Added left margin */
+}
+
+.nav__toggle, .nav__close {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  flex-direction: row;
+  margin-right: 1.5rem; /* Added right margin */
+}
+
+.nav__item {
+  margin-right: 2rem; /* Added spacing between items */
+}
+
+.nav__link {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.4s;
+  padding-bottom: 2px; /* Adjusts spacing under link */
+}
+
+.nav__link span {
+  position: relative;
+  transition: margin 0.4s;
+}
+
+.nav__link span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff;
+  transition: width 0.4s ease-out;
+}
+
+.contact button{
+  height: 35px;
+  width: 200px;
+}
+
+.nav__link:hover span::after {
+  width: 100%;
+}
+
+/* Sibling fade animation */
+/* .nav__list:has(.nav__link:hover) .nav__link:not(:hover) {
+  opacity: 0.4;
+} */
+
+
+
+
+
+
+
+.nav__menu {
+  display: flex;
+  margin-right: 1.5rem; /* Added right margin */
+}
+
+/*=============== MOBILE MENU ===============*/
+@media screen and (max-width: 1150px) {
+  .nav__menu {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    padding: 6rem 3.5rem 4.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: left 0.4s;
+  }
+
+  .nav__item {
+    margin-bottom: 3rem; /* Adjusts spacing between items in mobile view */
+  }
+
+  .nav__toggle, .nav__close {
+    display: flex;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .nav__list {
+    flex-direction: column;
+  }
+
+  /* Show menu */
+  .show-menu {
+    left: 0;
+  }
+
+  /* Animation link when displaying menu */
+  .show-menu .nav__item {
+    visibility: visible;
+    transform: translateX(0);
+  }
+}
+.item {
+  padding: 10px;
+  background-color: #222;
+  border-radius: 8px;
+  color: #eee;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}

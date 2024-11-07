@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Description</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .item {
+            padding: 10px;
+            background-color: #222;
+            border-radius: 8px;
+            color: #eee;
+            margin: 20px;
+            max-width: 300px; /* Set a max width for the item */
+        }
+
+        .description {
+            max-height: 40px; /* Default height */
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .read-more {
+            display: none; /* Initially hidden */
+            padding: 5px;
+            font-size: 12px;
+            background: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .description.expanded {
+            max-height: 200px; /* Expanded height */
+        }
+    </style>
+</head>
+<body>
+
+<div class="item">
+    <div class="description">This is a long description that may require expanding. It contains more details about the topic being discussed. Additional text here to show more content.</div>
+    <button class="read-more">Read More</button>
+</div>
+
+<div class="item">
+    <div class="description">Another item with a long description that should be expandable when the button is clicked. More information follows here.</div>
+    <button class="read-more">Read More</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Handle Read More button functionality
+        document.querySelectorAll('.item').forEach(item => {
+            const description = item.querySelector('.description');
+            const readMoreButton = item.querySelector('.read-more');
+
+            // Show the button if the description is long enough
+            if (description.scrollHeight > description.clientHeight) {
+                readMoreButton.style.display = 'block';
+
+                readMoreButton.addEventListener('click', () => {
+                    
+                    description.classList.toggle('expanded'); // Toggle expanded class
+                    readMoreButton.textContent = description.classList.contains('expanded') ? 'Read Less' : 'Read More'; // Change button text
+                });
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
