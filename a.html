@@ -3,74 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expandable Description</title>
+    <title>Attractive Contact Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
-        .item {
-            padding: 10px;
-            background-color: #222;
-            border-radius: 8px;
-            color: #eee;
-            margin: 20px;
-            max-width: 300px; /* Set a max width for the item */
+        .form-container {
+            background: linear-gradient(135deg, #6e7fdb, #94a3eb);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
         }
 
-        .description {
-            max-height: 40px; /* Default height */
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+        h2 {
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 30px;
         }
 
-        .read-more {
-            display: none; /* Initially hidden */
-            padding: 5px;
-            font-size: 12px;
-            background: #333;
-            color: #fff;
+        .form-field {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .form-field input, .form-field textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+            color: #333;
+        }
+
+        .form-field input:focus, .form-field textarea:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(81, 203, 238, 1);
+        }
+
+        .form-field label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            font-size: 14px;
+            color: #777;
+            background-color: transparent;
+            padding: 0 5px;
+            transition: 0.3s;
+            pointer-events: none;
+            font-weight: bold;
+        }
+
+        .form-field input:focus + label, .form-field textarea:focus + label {
+           
+            color: #007bff;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 15px;
             border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .description.expanded {
-            max-height: 200px; /* Expanded height */
+        .form-button:hover {
+            background-color: #0056b3;
+        }
+
+        .form-button:active {
+            background-color: #003f7f;
+        }
+
+        .form-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .form-container p {
+            text-align: center;
+            font-size: 14px;
+            color: #fff;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="item">
-    <div class="description">This is a long description that may require expanding. It contains more details about the topic being discussed. Additional text here to show more content.</div>
-    <button class="read-more">Read More</button>
-</div>
+    <div class="form-container">
+        <h2>Contact Us</h2>
+        <form>
+            <div class="form-field">
+                <input type="text" id="full-name" required>
+                <label for="full-name">Full Name</label>
+            </div>
 
-<div class="item">
-    <div class="description">Another item with a long description that should be expandable when the button is clicked. More information follows here.</div>
-    <button class="read-more">Read More</button>
-</div>
+            <div class="form-field">
+                <input type="tel" id="phone-number" required>
+                <label for="phone-number">Phone Number</label>
+            </div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        // Handle Read More button functionality
-        document.querySelectorAll('.item').forEach(item => {
-            const description = item.querySelector('.description');
-            const readMoreButton = item.querySelector('.read-more');
+            <div class="form-field">
+                <input type="email" id="email" required>
+                <label for="email">Email Address</label>
+            </div>
 
-            // Show the button if the description is long enough
-            if (description.scrollHeight > description.clientHeight) {
-                readMoreButton.style.display = 'block';
+            <div class="form-field">
+                <textarea id="message" required></textarea>
+                <label for="message">Message</label>
+            </div>
 
-                readMoreButton.addEventListener('click', () => {
-                    
-                    description.classList.toggle('expanded'); // Toggle expanded class
-                    readMoreButton.textContent = description.classList.contains('expanded') ? 'Read Less' : 'Read More'; // Change button text
-                });
-            }
-        });
-    });
-</script>
+            <button type="submit" class="form-button">Submit</button>
+        </form>
+
+        <p>We will get back to you shortly!</p>
+    </div>
 
 </body>
 </html>

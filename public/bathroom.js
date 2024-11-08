@@ -32,38 +32,37 @@ containers.forEach(container => {
 
 
 
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const nextButton = document.querySelector('.carousel-next');
-const prevButton = document.querySelector('.carousel-prev');
-let currentIndex = 0; // Track the current slide
+const carouselTrack = document.querySelector('.carousel-track');
+const carouselSlides = Array.from(carouselTrack.children);
+const nextArrow = document.querySelector('.carousel-next');
+const prevArrow = document.querySelector('.carousel-prev');
+let currentSlideIndex = 0; // Track the current slide
 
 // Function to update the track position based on the current index
-const updateSlidePosition = () => {
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+const updateCarouselPosition = () => {
+    const slideWidth = carouselSlides[0].getBoundingClientRect().width;
+    carouselTrack.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
 };
 
 // Move to the next slide
-nextButton.addEventListener('click', () => {
-    if (currentIndex < slides.length - 1) {
-        currentIndex++;
+nextArrow.addEventListener('click', () => {
+    if (currentSlideIndex < carouselSlides.length - 1) {
+        currentSlideIndex++;
     } else {
-        currentIndex = 0; // Loop back to the first slide
+        currentSlideIndex = 0; // Loop back to the first slide
     }
-    updateSlidePosition();
+    updateCarouselPosition();
 });
 
 // Move to the previous slide
-prevButton.addEventListener('click', () => {
-    if (currentIndex > 0) {
-        currentIndex--;
+prevArrow.addEventListener('click', () => {
+    if (currentSlideIndex > 0) {
+        currentSlideIndex--;
     } else {
-        currentIndex = slides.length - 1; // Loop back to the last slide
+        currentSlideIndex = carouselSlides.length - 1; // Loop back to the last slide
     }
-    updateSlidePosition();
+    updateCarouselPosition();
 });
-
 
 
 

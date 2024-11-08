@@ -68,15 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-// Function to add the first script to the DOM
-function addFirstScript() {
+// Function to add a dynamic script to the DOM with specific container context
+function addScript(containerIndex, scriptType) {
   const script = document.createElement("script");
-  script.setAttribute("data-dynamic-script", "first");
+  script.setAttribute("data-dynamic-script", scriptType + containerIndex);
   script.textContent = `
       (function() {
-          let currentIndex = 0; // Initialize currentIndex inside the first script
+          let currentIndex = 0; // Initialize currentIndex inside the script
 
-          const container = document.querySelector('.container1');
+          const container = document.querySelectorAll('.container1')[${containerIndex}];
 
           if (container) {
               const next = container.querySelector('.next');
@@ -112,8 +112,8 @@ function addFirstScript() {
 
           function checkCurrentIndex() {
               if (currentIndex === 0) {
-                  removeExistingScript();
-                  addSecondScript();
+                  removeExistingScript(${containerIndex});
+                  addScript(${containerIndex}, '${scriptType === 'first' ? 'second' : 'first'}');
               }
           }
       })();
@@ -121,69 +121,25 @@ function addFirstScript() {
   document.head.appendChild(script);
 }
 
-// Function to add the second script to the DOM
-function addSecondScript() {
-  const script = document.createElement("script");
-  script.setAttribute("data-dynamic-script", "second");
-  script.textContent = `
-      (function() {
-          let currentIndex = 0; // Initialize currentIndex inside the second script
-
-          const container = document.querySelector('.container1');
-
-          if (container) {
-              const next = container.querySelector('.next');
-              const previous = container.querySelector('.previous');
-              const slide = container.querySelector('.slide');
-              const items = Array.from(slide.children);
-              const itemWidth = items[0].offsetWidth;
-
-              const updateItemPositions = () => {
-                  slide.style.transform = \`translateX(-\${itemWidth * currentIndex}px)\`;
-                  next.disabled = currentIndex >= 2;
-                  previous.disabled = currentIndex <= 0;
-              };
-
-              next.addEventListener('click', () => {
-                  if (currentIndex < 3) {
-                      currentIndex++;
-                      updateItemPositions();
-                      checkCurrentIndex();
-                  }
-              });
-
-              previous.addEventListener('click', () => {
-                  if (currentIndex > 0) {
-                      currentIndex--;
-                      updateItemPositions();
-                      checkCurrentIndex();
-                  }
-              });
-
-              updateItemPositions();
-          }
-
-          function checkCurrentIndex() {
-              if (currentIndex === 0) {
-                  removeExistingScript();
-                  addFirstScript();
-              }
-          }
-      })();
-  `;
-  document.head.appendChild(script);
-}
-
-// Function to remove any existing dynamic script
-function removeExistingScript() {
-  const existingScript = document.querySelector("script[data-dynamic-script]");
+// Function to remove any existing dynamic script for a specific container
+function removeExistingScript(containerIndex) {
+  const existingScript = document.querySelector(`script[data-dynamic-script*="${containerIndex}"]`);
   if (existingScript) {
       existingScript.remove();
   }
 }
 
-// Initialize by adding the first script
-addFirstScript();
+// Initialize by adding the first script for each container
+document.querySelectorAll('.container1').forEach((_, index) => addScript(index, 'first'));
+
+
+
+
+
+
+
+
+
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -227,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('scroll', function () {
    const navbar = document.querySelector('.header');
    const scrollPosition = window.scrollY;
-   const triggerHeight = window.innerHeight * 0.2; // 20vh
+   const triggerHeight = window.innerHeight * 0.0001; // 20vh
 
 
    const white=document.querySelector('.whitelogo');
@@ -239,12 +195,16 @@ document.addEventListener('scroll', function () {
    const navLinkSpans = document.querySelectorAll('.nav__link span'); // Select spans within nav links
    const call = document.querySelector('.call');
    const get=document.querySelector('.contact button');
+   const calllo=document.querySelector('.calllo');
+   const navtoggle=document.querySelector('.nav_toggle');
 
    if (scrollPosition > triggerHeight) {
      navbar.classList.add('scrolled');
      nav.classList.add('scrolled2');
      call.classList.add('scrolled4');
      get.classList.add('scrolled5');
+     calllo.classList.add('scrolled6');
+     navtoggle.classList.add('scrolled6');
      // Add classes to nav links and spans
      navLinks.forEach(link => link.classList.add('scrolled1'));
      navLinkSpans.forEach(span => span.classList.add('scrolled3'));
@@ -255,6 +215,8 @@ document.addEventListener('scroll', function () {
      nav.classList.remove('scrolled2');
      call.classList.remove('scrolled4');
      get.classList.remove('scrolled5');
+     calllo.classList.remove('scrolled6');
+     navtoggle.classList.remove('scrolled6');
      // Remove classes from nav links and spans
      navLinks.forEach(link => link.classList.remove('scrolled1'));
      navLinkSpans.forEach(span => span.classList.remove('scrolled3'));
@@ -330,13 +292,22 @@ containers1.forEach(container => {
 document.addEventListener('DOMContentLoaded', () => {
   const slide = document.querySelector('.slide');
   const re = document.querySelector('.re');
-  const button1 = document.querySelector('.button1');
+  const buttons1 = document.querySelectorAll('.button1');
+  const buttons2 = document.querySelectorAll('.button2');
 
-  if (slide && re && button1) {
-      // Calculate combined height
-      const totalHeight = slide.offsetHeight + 0.5*re.offsetHeight;
-      // Set the top property of button1
-      button1.style.top = `${totalHeight}px`;
+  if (slide && re) {
+      // Calculate combined height once
+      const totalHeight = slide.offsetHeight + 0.5 * re.offsetHeight;
+      
+      // Set the top property for all button1 instances
+      buttons1.forEach(button => {
+          button.style.top = `${totalHeight}px`;
+      });
+
+      // Set the top property for all button2 instances
+      buttons2.forEach(button => {
+          button.style.top = `${totalHeight}px`;
+      });
   }
 });
 
@@ -344,15 +315,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const slide = document.querySelector('.slide');
-  const re = document.querySelector('.re');
-  const button2 = document.querySelector('.button2');
 
-  if (slide && re && button2) {
-      // Calculate combined height
-      const totalHeight = slide.offsetHeight + 0.5*re.offsetHeight;
-      // Set the top property of button1
-      button2.style.top = `${totalHeight}px`;
-  }
+document.addEventListener('DOMContentLoaded', function () {
+  const sliderTrack = document.querySelector('.slider-track');
+  const slides = Array.from(sliderTrack.children);
+  const nextButton = document.querySelector('.slider-next');
+  const prevButton = document.querySelector('.slider-prev');
+  let currentIndex = 0;
+
+  // Function to update slider position and button states
+  const updateSliderPosition = () => {
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      sliderTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
+
+      // Disable next button at last slide
+      nextButton.disabled = currentIndex === slides.length - 1;
+      
+      // Disable previous button at first slide
+      prevButton.disabled = currentIndex === 0;
+  };
+
+  // Move to the next slide
+  nextButton.addEventListener('click', () => {
+      if (currentIndex < slides.length - 1) {
+          currentIndex++;
+      } else {
+          currentIndex = 0; // Loop back to the first slide
+      }
+      updateSliderPosition();
+  });
+
+  // Move to the previous slide
+  prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+          currentIndex--;
+      } else {
+          currentIndex = slides.length - 1; // Loop back to the last slide
+      }
+      updateSliderPosition();
+  });
+
+  // Initial setup to display the first slide and button states
+  updateSliderPosition();
 });
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector('.nav__toggle');
+  const navClose = document.querySelector('.nav__close');
+
+  navToggle.addEventListener('click', () => {
+      navClose.style.display = 'block'; // Only sets display to 'block' once
+  });
+  navClose.addEventListener('click', () => {
+    navClose.style.display = 'none';
+});
+});
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const navToggle = document.querySelector('.nav__toggle');
+  const navClose = document.querySelector('.nav__close');
+  const whiteLogo = document.querySelector('.whitelogo');
+  const blackLogo = document.querySelector('.blacklogo');
+
+  navToggle.addEventListener('click', () => {
+      blackLogo.style.display = 'none';
+      whiteLogo.style.display = 'block';
+  });
+
+  navClose.addEventListener('click', () => {
+      blackLogo.style.display = 'block';
+      whiteLogo.style.display = 'none';
+  });
+});
+
