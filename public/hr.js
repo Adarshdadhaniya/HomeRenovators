@@ -1,21 +1,4 @@
-/*=============== SHOW MENU ===============*/
-const navMenu = document.getElementById('nav-menu'),
-      navToggle = document.getElementById('nav-toggle'),
-      navClose = document.getElementById('nav-close')
 
-/* Menu show */
-if(navToggle){
-   navToggle.addEventListener('click', () =>{
-      navMenu.classList.add('show-menu')
-   })
-}
-
-/* Menu hidden */
-if(navClose){
-   navClose.addEventListener('click', () =>{
-      navMenu.classList.remove('show-menu')
-   })
-}
 
 
 
@@ -87,12 +70,12 @@ function addScript(containerIndex, scriptType) {
 
               const updateItemPositions = () => {
                   slide.style.transform = \`translateX(-\${itemWidth * currentIndex}px)\`;
-                  next.disabled = currentIndex >= 2;
+                  next.disabled = currentIndex >= 5;
                   previous.disabled = currentIndex <= 0;
               };
 
               next.addEventListener('click', () => {
-                  if (currentIndex < 3) {
+                  if (currentIndex < 6) {
                       currentIndex++;
                       updateItemPositions();
                       checkCurrentIndex();
@@ -144,7 +127,7 @@ document.querySelectorAll('.container1').forEach((_, index) => addScript(index, 
 
 document.addEventListener('DOMContentLoaded', () => {
   // Loop through each item with the class "item"
-  document.querySelectorAll('.item').forEach(item => {
+  document.querySelectorAll('.itemc').forEach(item => {
       const description = item.querySelector('.description');
       const readMoreButton = item.querySelector('.read-more');
       const readLessButton = item.querySelector('.read-less'); // Select the Read Less button
@@ -180,52 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.addEventListener('scroll', function () {
-   const navbar = document.querySelector('.header');
-   const scrollPosition = window.scrollY;
-   const triggerHeight = window.innerHeight * 0.0001; // 20vh
-
-
-   const white=document.querySelector('.whitelogo');
-   const black=document.querySelector('.blacklogo');
-
-
-   const nav = document.querySelector('.nav');
-   const navLinks = document.querySelectorAll('.nav__link');
-   const navLinkSpans = document.querySelectorAll('.nav__link span'); // Select spans within nav links
-   const call = document.querySelector('.call');
-   const get=document.querySelector('.contact button');
-   const calllo=document.querySelector('.calllo');
-   const navtoggle=document.querySelector('.nav_toggle');
-
-   if (scrollPosition > triggerHeight) {
-     navbar.classList.add('scrolled');
-     nav.classList.add('scrolled2');
-     call.classList.add('scrolled4');
-     get.classList.add('scrolled5');
-     calllo.classList.add('scrolled6');
-     navtoggle.classList.add('scrolled6');
-     // Add classes to nav links and spans
-     navLinks.forEach(link => link.classList.add('scrolled1'));
-     navLinkSpans.forEach(span => span.classList.add('scrolled3'));
-     white.style.display = 'block';
-      black.style.display = 'none';
-   } else {
-     navbar.classList.remove('scrolled');
-     nav.classList.remove('scrolled2');
-     call.classList.remove('scrolled4');
-     get.classList.remove('scrolled5');
-     calllo.classList.remove('scrolled6');
-     navtoggle.classList.remove('scrolled6');
-     // Remove classes from nav links and spans
-     navLinks.forEach(link => link.classList.remove('scrolled1'));
-     navLinkSpans.forEach(span => span.classList.remove('scrolled3'));
-     white.style.display = 'none';
-      black.style.display = 'block';
-   }
-});
-
-
 
 
 
@@ -242,16 +179,6 @@ document.addEventListener('scroll', function () {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-  const itemDiv = document.querySelector('.item'); // Select the first item div
-  const maincontainer = document.querySelector('.maincontainer'); // Select the container1 div
-
-  if (itemDiv && maincontainer) {
-      const itemHeight = itemDiv.offsetHeight; // Get the height of the item div
-      const marginTopValue = `calc(10vh + ${itemHeight}px)`; // Calculate the margin top
-      maincontainer.style.marginTop = marginTopValue; // Apply the margin top to container1
-  }
-});
 
 
 // Select all containers with the class 'container1'
@@ -270,7 +197,7 @@ containers1.forEach(container => {
         const style = window.getComputedStyle(items[0]);
         const marginRight = parseFloat(style.marginRight); // Get margin-right in pixels
         const totalWidth = itemWidth + marginRight; // Calculate the combined width (width + margin)
-        slide.style.transform = `translateX(-${totalWidth * currentIndex}px)`;
+        slide.style.transform = `translateX(-${(totalWidth * currentIndex) -4}px)`;
     };
 
     // Move to the next item
@@ -297,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (slide && re) {
       // Calculate combined height once
-      const totalHeight = slide.offsetHeight + 0.5 * re.offsetHeight;
+      const totalHeight = slide.offsetHeight + 0.2 * re.offsetHeight;
       
       // Set the top property for all button1 instances
       buttons1.forEach(button => {
@@ -316,50 +243,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const sliderTrack = document.querySelector('.slider-track');
-  const slides = Array.from(sliderTrack.children);
-  const nextButton = document.querySelector('.slider-next');
-  const prevButton = document.querySelector('.slider-prev');
-  let currentIndex = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.slider-item');
 
-  // Function to update slider position and button states
-  const updateSliderPosition = () => {
-      const slideWidth = slides[0].getBoundingClientRect().width;
-      sliderTrack.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
-
-      // Disable next button at last slide
-      nextButton.disabled = currentIndex === slides.length - 1;
-      
-      // Disable previous button at first slide
-      prevButton.disabled = currentIndex === 0;
+  const handleScroll = () => {
+      const triggerPoint = window.innerHeight / 1.5; // Adjust based on when you want animation
+      items.forEach((item) => {
+          const itemTop = item.getBoundingClientRect().top;
+          if (itemTop < triggerPoint) {
+              item.classList.add('active');
+          } else {
+              item.classList.remove('active');
+          }
+      });
   };
 
-  // Move to the next slide
-  nextButton.addEventListener('click', () => {
-      if (currentIndex < slides.length - 1) {
-          currentIndex++;
-      } else {
-          currentIndex = 0; // Loop back to the first slide
-      }
-      updateSliderPosition();
-  });
-
-  // Move to the previous slide
-  prevButton.addEventListener('click', () => {
-      if (currentIndex > 0) {
-          currentIndex--;
-      } else {
-          currentIndex = slides.length - 1; // Loop back to the last slide
-      }
-      updateSliderPosition();
-  });
-
-  // Initial setup to display the first slide and button states
-  updateSliderPosition();
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); // Trigger on load in case of initial visible items
 });
-
-
 
 
 
@@ -402,3 +303,49 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const counters = document.querySelectorAll('.counter-numbers');
+  let hasAnimated = false;
+
+  // Function to animate numbers
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-number'); // Get the target number
+      let current = 0;
+      const increment = target / 100; // Adjust this value to change the speed
+
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = `${Math.ceil(current)}+`;
+          requestAnimationFrame(updateCounter); // Continue animating
+        } else {
+          counter.textContent = `${target}+`;
+        }
+      };
+      updateCounter();
+    });
+  };
+
+  // Use IntersectionObserver to trigger animation when the section comes into view
+  const section = document.querySelector('.section-work-data');
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !hasAnimated) {
+      animateCounters();
+      hasAnimated = true; // Ensure the animation runs only once
+    }
+  }, {
+    threshold: 0.5 // Trigger when 50% of the section is in view
+  });
+
+  observer.observe(section);
+});
