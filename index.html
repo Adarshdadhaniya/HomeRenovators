@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:8080/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script data-dynamic-script="first0">
+      (function() {
+          let currentIndex = 0; // Initialize currentIndex inside the script
+
+          const container = document.querySelectorAll('.container1')[0];
+
+          if (container) {
+              const next = container.querySelector('.next');
+              const previous = container.querySelector('.previous');
+              const slide = container.querySelector('.slide');
+              const items = Array.from(slide.children);
+              const itemWidth = items[0].offsetWidth;
+
+              const updateItemPositions = () => {
+                  slide.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                  next.disabled = currentIndex >= 5;
+                  previous.disabled = currentIndex <= 0;
+              };
+
+              next.addEventListener('click', () => {
+                  if (currentIndex < 6) {
+                      currentIndex++;
+                      updateItemPositions();
+                      checkCurrentIndex();
+                  }
+              });
+
+              previous.addEventListener('click', () => {
+                  if (currentIndex > 0) {
+                      currentIndex--;
+                      updateItemPositions();
+                      checkCurrentIndex();
+                  }
+              });
+
+              updateItemPositions();
+          }
+
+          function checkCurrentIndex() {
+              if (currentIndex === 0) {
+                  removeExistingScript(0);
+                  addScript(0, 'second');
+              }
+          }
+      })();
+  </script></head>
+<body cz-shortcut-listen="true">
+    
+   <link rel="stylesheet" href="./index_files/hr.css">
+   <link rel="stylesheet" href="./index_files/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+
+
+    <div class="home-bg-img">
+        <link rel="stylesheet" href="./index_files/header.css">
+
+    <header class="header scrolled" id="header">
+        <nav class="nav container scrolled2">
+           <a href="http://localhost:8080/#" class="nav__logo">
+            
+               <svg class="blacklogo" xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 576 512" style="display: none;"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#ffffff" d="M244 246c-3.2-2-6.3-2.9-10.1-2.9-6.6 0-12.6 3.2-19.3 3.7l1.7 4.9zm135.9 197.9c-19 0-64.1 9.5-79.9 19.8l6.9 45.1c35.7 6.1 70.1 3.6 106-9.8-4.8-10-23.5-55.1-33-55.1zM340.8 177c6.6 2.8 11.5 9.2 22.7 22.1 2-1.4 7.5-5.2 7.5-8.6 0-4.9-11.8-13.2-13.2-23 11.2-5.7 25.2-6 37.6-8.9 68.1-16.4 116.3-52.9 146.8-116.7C548.3 29.3 554 16.1 554.6 2l-2 2.6c-28.4 50-33 63.2-81.3 100-31.9 24.4-69.2 40.2-106.6 54.6l-6.3-.3v-21.8c-19.6 1.6-19.7-14.6-31.6-23-18.7 20.6-31.6 40.8-58.9 51.1-12.7 4.8-19.6 10-25.9 21.8 34.9-16.4 91.2-13.5 98.8-10zM555.5 0l-.6 1.1-.3 .9 .6-.6zm-59.2 382.1c-33.9-56.9-75.3-118.4-150-115.5l-.3-6c-1.1-13.5 32.8 3.2 35.1-31l-14.4 7.2c-19.8-45.7-8.6-54.3-65.5-54.3-14.7 0-26.7 1.7-41.4 4.6 2.9 18.6 2.2 36.7-10.9 50.3l19.5 5.5c-1.7 3.2-2.9 6.3-2.9 9.8 0 21 42.8 2.9 42.8 33.6 0 18.4-36.8 60.1-54.9 60.1-8 0-53.7-50-53.4-60.1l.3-4.6 52.3-11.5c13-2.6 12.3-22.7-2.9-22.7-3.7 0-43.1 9.2-49.4 10.6-2-5.2-7.5-14.1-13.8-14.1-3.2 0-6.3 3.2-9.5 4-9.2 2.6-31 2.9-21.5 20.1L15.9 298.5c-5.5 1.1-8.9 6.3-8.9 11.8 0 6 5.5 10.9 11.5 10.9 8 0 131.3-28.4 147.4-32.2 2.6 3.2 4.6 6.3 7.8 8.6 20.1 14.4 59.8 85.9 76.4 85.9 24.1 0 58-22.4 71.3-41.9 3.2-4.3 6.9-7.5 12.4-6.9 .6 13.8-31.6 34.2-33 43.7-1.4 10.2-1 35.2-.3 41.1 26.7 8.1 52-3.6 77.9-2.9 4.3-21 10.6-41.9 9.8-63.5l-.3-9.5c-1.4-34.2-10.9-38.5-34.8-58.6-1.1-1.1-2.6-2.6-3.7-4 2.2-1.4 1.1-1 4.6-1.7 88.5 0 56.3 183.6 111.5 229.9 33.1-15 72.5-27.9 103.5-47.2-29-25.6-52.6-45.7-72.7-79.9zm-196.2 46.1v27.2l11.8-3.4-2.9-23.8zm-68.7-150.4l24.1 61.2 21-13.8-31.3-50.9zm84.4 154.9l2 12.4c9-1.5 58.4-6.6 58.4-14.1 0-1.4-.6-3.2-.9-4.6-26.8 0-36.9 3.8-59.5 6.3z"></path></svg>          
+          
+           
+               <svg class="whitelogo" style="display: block;" xmlns="http://www.w3.org/2000/svg" height="80" width="80" viewBox="0 0 576 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#000000" d="M244 246c-3.2-2-6.3-2.9-10.1-2.9-6.6 0-12.6 3.2-19.3 3.7l1.7 4.9zm135.9 197.9c-19 0-64.1 9.5-79.9 19.8l6.9 45.1c35.7 6.1 70.1 3.6 106-9.8-4.8-10-23.5-55.1-33-55.1zM340.8 177c6.6 2.8 11.5 9.2 22.7 22.1 2-1.4 7.5-5.2 7.5-8.6 0-4.9-11.8-13.2-13.2-23 11.2-5.7 25.2-6 37.6-8.9 68.1-16.4 116.3-52.9 146.8-116.7C548.3 29.3 554 16.1 554.6 2l-2 2.6c-28.4 50-33 63.2-81.3 100-31.9 24.4-69.2 40.2-106.6 54.6l-6.3-.3v-21.8c-19.6 1.6-19.7-14.6-31.6-23-18.7 20.6-31.6 40.8-58.9 51.1-12.7 4.8-19.6 10-25.9 21.8 34.9-16.4 91.2-13.5 98.8-10zM555.5 0l-.6 1.1-.3 .9 .6-.6zm-59.2 382.1c-33.9-56.9-75.3-118.4-150-115.5l-.3-6c-1.1-13.5 32.8 3.2 35.1-31l-14.4 7.2c-19.8-45.7-8.6-54.3-65.5-54.3-14.7 0-26.7 1.7-41.4 4.6 2.9 18.6 2.2 36.7-10.9 50.3l19.5 5.5c-1.7 3.2-2.9 6.3-2.9 9.8 0 21 42.8 2.9 42.8 33.6 0 18.4-36.8 60.1-54.9 60.1-8 0-53.7-50-53.4-60.1l.3-4.6 52.3-11.5c13-2.6 12.3-22.7-2.9-22.7-3.7 0-43.1 9.2-49.4 10.6-2-5.2-7.5-14.1-13.8-14.1-3.2 0-6.3 3.2-9.5 4-9.2 2.6-31 2.9-21.5 20.1L15.9 298.5c-5.5 1.1-8.9 6.3-8.9 11.8 0 6 5.5 10.9 11.5 10.9 8 0 131.3-28.4 147.4-32.2 2.6 3.2 4.6 6.3 7.8 8.6 20.1 14.4 59.8 85.9 76.4 85.9 24.1 0 58-22.4 71.3-41.9 3.2-4.3 6.9-7.5 12.4-6.9 .6 13.8-31.6 34.2-33 43.7-1.4 10.2-1 35.2-.3 41.1 26.7 8.1 52-3.6 77.9-2.9 4.3-21 10.6-41.9 9.8-63.5l-.3-9.5c-1.4-34.2-10.9-38.5-34.8-58.6-1.1-1.1-2.6-2.6-3.7-4 2.2-1.4 1.1-1 4.6-1.7 88.5 0 56.3 183.6 111.5 229.9 33.1-15 72.5-27.9 103.5-47.2-29-25.6-52.6-45.7-72.7-79.9zm-196.2 46.1v27.2l11.8-3.4-2.9-23.8zm-68.7-150.4l24.1 61.2 21-13.8-31.3-50.9zm84.4 154.9l2 12.4c9-1.5 58.4-6.6 58.4-14.1 0-1.4-.6-3.2-.9-4.6-26.8 0-36.9 3.8-59.5 6.3z"></path></svg>
+               <div class="nav__close" id="nav-close">
+                  <i class="fa-solid fa-xmark fa-lg " style="color: black;"></i>
+               </div>
+            </a>
+            
+           <!-- Close button -->
+           <div class="nav__menu" id="nav-menu">
+               
+               <ul class="nav__list">
+                 <li class="nav__item">
+                    <a href="http://localhost:8080/#" class="nav__link scrolled1">
+                       
+                       <span class="scrolled3">Process</span>
+                    </a>
+                 </li>
+
+                 <li class="nav__item">
+                    <a href="http://localhost:8080/#" class="nav__link scrolled1">
+                       
+                       <span class="scrolled3">Bathrooms</span>
+                    </a>
+                 </li>
+
+                 <li class="nav__item">
+                    <a href="http://localhost:8080/#" class="nav__link scrolled1">
+                       
+                       <span class="scrolled3">Kitchens</span>
+                    </a>
+                 </li>
+
+                 <li class="nav__item">
+                    <a href="http://localhost:8080/#" class="nav__link scrolled1">
+                       
+                       <span class="scrolled3">Full Remodel</span>
+                    </a>
+                 </li>
+
+                 <li class="nav__item">
+                    <a href="http://localhost:8080/#" class="nav__link scrolled1">
+                       
+                       <span class="scrolled3">About</span>
+                    </a>
+                 </li>
+                 <li class="nav__item">
+                  <a href="http://localhost:8080/tel" class="nav__link call scrolled4 scrolled1">
+                     <i class="fa-solid fa-phone fa-sm calllo scrolled6"></i>
+                     <span class="scrolled3">&nbsp;&nbsp;&nbsp;2126662884</span>
+                  </a>
+                  </li>
+               </ul>
+
+              
+
+               <div class="nav__contact contact">
+                 <button class="scrolled5">Get An Estimate</button>
+               </div>
+           </div>
+
+           <!-- Toggle button -->
+           <div class="nav__toggle" id="nav-toggle">
+            <i class="fa-solid fa-bars fa-lg nav_toggle scrolled6"></i>
+           </div>
+        </nav>
+        <script src="./index_files/header.js.download"></script>
+     </header>
+
+
+        <div class="main">
+            <h2>Home <br>Renovation <br> Experts in NYC</h2>
+            <h4>Renovate in NYC with the experts. Specializing in kitchens, bathrooms and full home remodels.</h4>
+            <button>Get An Estimate</button>
+        </div>
+        <div class="ratings">
+            <span class="goog">
+                Google
+                <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+              </span>
+        </div>
+    </div>
+    <section class="section section-work-data">
+      <div class="container grid grid-four-column">
+          <div>
+              <h2 class="counter-numbers" data-number="2000">2000+</h2>
+              <p>project completed</p>
+          </div>
+          <div>
+              <h2 class="counter-numbers" data-number="6000">6000+</h2>
+              <p>Happy Clients</p>
+          </div>
+          <div>
+              <h2 class="counter-numbers" data-number="5000">5000+</h2>
+              <p>cups of coffee</p>
+          </div>
+          <div>
+              <h2 class="counter-numbers" data-number="3000">3000+</h2>
+              <p>real professionals</p>
+          </div>
+      </div>
+  </section>
+  
+    <div class="maincontainer">
+      <h2 class="our">Our Services</h2>
+      
+          <div class="flex-container">
+              <a href="http://localhost:8080/">
+                <div class="card">
+                  <img src="./index_files/bathroomimg3.webp" alt="Image 1">
+                  <h3>Full Remodel</h3>
+                  <p class="view__more">View More &nbsp;&nbsp;<i class="fa-solid fa-arrow-right-long fa-xl" style="color: #CF6F4C;"></i></p>
+              </div>
+              </a>
+              <a href="http://localhost:8080/">
+                <div class="card">
+                  <img src="./index_files/kitchenimg1.webp" alt="Image 2">
+                  <h3>Bathrooms</h3>
+                  <p class="view__more">View More &nbsp;&nbsp;<i class="fa-solid fa-arrow-right-long fa-xl" style="color: #CF6F4C;"></i></p>
+              </div>
+              </a>
+              <a href="http://localhost:8080/">
+                <div class="card">
+                  <img src="./index_files/fullremodelimg1.webp" alt="Image 3">
+                  <h3>Kitchens</h3>
+                  <p class="view__more">View More &nbsp;&nbsp;<i class="fa-solid fa-arrow-right-long fa-xl" style="color: #CF6F4C;"></i></p>
+              </div>
+              </a>
+              
+          </div>
+      
+  </div>
+    <h2 class="ou">Recent Projects</h2>
+    <div class="gallery-container">
+      <!-- Full Remodel Section -->
+      <div class="remodel-section">
+          <h2 class="full">Full Remodel</h2>
+          <div class="zigzag-grid">
+              <!-- Full Remodel Steps continue -->
+              <div class="zigzag-item">
+                
+                  <div class="image-container frimg1">
+                    
+                    
+                </div>
+                
+                
+                <div class="zigzag-content left-align">
+                  <h3>Location</h3>
+                  <div>
+                    <p>Client rating</p>
+                    <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                  </div>
+                  <p>Completion Date: March 2024</p>
+                  <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                </div>
+              </div>
+              
+              <div class="zigzag-item reverse">
+                
+                  <div class="image-container frimg2">
+                      
+                  </div>
+                
+                  
+                  <div class="zigzag-content right-align">
+                      <h3>Location</h3>
+                      
+                      <div>
+                        <p>Client rating</p>
+                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                      </div>
+                      <p>Completion Date: March 2024</p>
+                      <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  
+      <!-- Bathroom Remodel Section -->
+      <div class="remodel-section">
+          <h2 class="full">Bathroom Remodel</h2>
+          <div class="zigzag-grid">
+              <!-- Bathroom Remodel Steps continue -->
+              
+              <div class="zigzag-item reverse">
+                  <div class="image-container bimg2">
+                      
+                  </div>
+                  <div class="zigzag-content right-align">
+                      <h3>location 2</h3>
+                      
+                      <div>
+                        <p>Client rating</p>
+                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                      </div>
+                      <p>Completion Date: March 2024</p>
+                      <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                  </div>
+              </div>
+              <div class="zigzag-item">
+                  <div class="image-container bimg3">
+                      
+                  </div>
+                  <div class="zigzag-content left-align">
+                      <h3>location 3</h3>
+                      
+                      <div>
+                        <p>Client rating</p>
+                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                      </div>
+                      <p>Completion Date: March 2024</p>
+                      <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                  </div>
+              </div>
+            
+          </div>
+      </div>
+  
+      <!-- Kitchen Remodel Section -->
+      <div class="remodel-section">
+          <h2 class="full">Kitchen Remodel</h2>
+          <div class="zigzag-grid">
+              <!-- Kitchen Remodel Steps continue -->
+              <div class="zigzag-item">
+                  <div class="image-container kimg1">
+                      
+                  </div>
+                  <div class="zigzag-content left-align">
+                      <h3>location 1</h3>
+                      
+                      <div>
+                        <p>Client rating</p>
+                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                      </div>
+                      <p>Completion Date: March 2024</p>
+                      <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                  </div>
+              </div>
+              <div class="zigzag-item reverse">
+                  <div class="image-container kimg2">
+                      
+                  </div>
+                  <div class="zigzag-content right-align">
+                      <h3>location 2</h3>
+                      
+                      <div>
+                        <p>Client rating</p>
+                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+                      </div>
+                      <p>Completion Date: March 2024</p>
+                      <p>This team transformed our space exactly how we envisioned. The attention to detail and commitment was top-notch!</p>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+  </div>
+  
+  
+  
+    
+      <div class="faqpage">
+        <div class="faqhead">
+            <h2>Why Choose Us</h2>
+        </div>
+        <div class="faqcontent">
+            <div class="faq">
+              <div class="faqs">
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>
+                        What is the typical timeline for seeing results?
+                      </p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>Project timelines vary depending on the complexity, but clients can expect an initial review of the solution within 1-4 weeks.</p>
+                  </div>
+                </div>
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>Can you work with our existing tools and data infrastructure?</p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>Yes, the solutions can integrate with your current tools and data infrastructure. The implementation methods are designed to fit seamlessly into existing systems, ensuring minimal disruption and maximum efficiency.</p>
+                  </div>
+                </div>
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>Do you offer alternative pricing plans?</p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>Yes, there are flexible pricing plans based on the project's scope. When the complexity of a project is unclear, a rate of $50 per hour is available.</p>
+                  </div>
+                </div>
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>What is included in the initial consultation?</p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>The initial consultation includes a discussion of the client’s business objectives, challenges, and data needs. This session helps to define the scope of the project, identify key requirements, and outline the approach for developing a tailored solution.</p>
+                  </div>
+                </div>
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>How do you handle data privacy and security?</p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>DataRise Solutions is committed to maintaining the highest standards of data privacy and security. All data is handled with strict confidentiality, and robust measures are implemented to protect sensitive information throughout the project lifecycle.</p>
+                  </div>
+                </div>
+                <div class="faq1">
+                  <div class="faqques">
+                    <div class="faqquescont">
+                      <p>How do you handle data privacy and security?</p>
+                    </div>
+                    <div class="faqimg">
+                      <div class="icon-container">
+                        <div class="plus-icon"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="faqans">
+                    <p>DataRise Solutions is committed to maintaining the highest standards of data privacy and security. All data is handled with strict confidentiality, and robust measures are implemented to protect sensitive information throughout the project lifecycle.</p>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="faqimage">
+                <img src="./index_files/employee.webp" alt="FAQ Image 1" class="visible">
+                <img src="./index_files/expert.webp" alt="FAQ Image 2">
+                <img src="./index_files/material.webp" alt="FAQ Image 1">
+                <img src="./index_files/trust.webp" alt="FAQ Image 1">
+                <img src="./index_files/fullremodelimg6.webp" alt="FAQ Image 1">
+                <img src="./index_files/employees.webp" alt="FAQ Image 1">
+                
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="rate">
+        <div class="container1">
+          <div class="button2" style="top: 354.2px;">
+            <button class="previous" disabled=""><i class="fa-solid fa-arrow-left"></i></button>
+          </div>
+            
+            <div class="re">
+              <span class="ex">Client Success Stories.</span>
+              
+              <!-- <div class="icons"> 
+                 <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+              </div> -->
+              
+              <!-- <span class="rev">Based on <b>100 Reviews</b></span> -->
+              
+              <div class="google-logo">
+                <span class="g">G</span>
+                <span class="o1">o</span>
+                <span class="o2">o</span>
+                <span class="g2">g</span>
+                <span class="l">l</span>
+                <span class="e">e</span>
+              </div>
+            </div>
+            <div class="slide" style="transform: translateX(0px);">
+              <!-- Item 1 -->
+               <div class="itemc">
+                <div class="item">
+                <div class="top-content">
+                  <div class="name">
+                    <img src="./index_files/img1.webp" alt="User" class="user-image">
+                    <span class="user-name">Alice</span>
+                  </div>
+                  
+                  <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+                </div>
+                <div class="bottom-content">
+                  <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                  <div class="description">
+                    <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit.am. Impedit eveniet modi ipsam nihil natus inventore corrupti mollitia, soluta voluptatum, at laudantium!Alice loved the service! Highly recommended for anyone looking for quality and reliability. Lorem ipsum dolor sit amet...</p>
+                    
+                  </div>
+                </div>
+                
+              </div>
+                <button class="read-more showmore">Read More</button>
+                <button class="read-less showless">Read less</button>
+               </div>
+              
+            
+              <!-- Item 2 -->
+               <div class="itemc">
+                <div class="item">
+                  <div class="top-content">
+                    <div class="name">
+                      <img src="./index_files/img2.webp" alt="User" class="user-image">
+                      <span class="user-name">Bob</span>
+                    </div>
+                   
+                    <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+  
+                  </div>
+                  <div class="bottom-content">
+                    <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                    <div class="description">
+                      <p class="text"> Lorem ipsum dolor sit amet...</p>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+                <button class="read-more">Read More</button>
+                <button class="read-less">Read less</button>
+               </div>
+              
+            
+              <!-- Item 3 -->
+               <div class="itemc">
+                <div class="item">
+                  <div class="top-content">
+                    <div class="name">
+                      <img src="./index_files/img3.webp" alt="User" class="user-image">
+                    <span class="user-name">Charlie</span>
+                    </div>
+                    
+                    <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+  
+                  </div>
+                  <div class="bottom-content">
+                    <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                    <div class="description">
+                      <p class="text">Charlie thought the service was average. Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+                <button class="read-more">Read More</button>
+                  <button class="read-less">Read less</button>
+               </div>
+
+            
+              <!-- Item 4 -->
+               <div class="itemc">
+                <div class="item">
+                  <div class="top-content">
+                    <div class="name">
+                      <img src="./index_files/img4.webp" alt="User" class="user-image">
+                    <span class="user-name">Diana</span>
+                    </div>
+                    
+                    <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+  
+                  </div>
+                  <div class="bottom-content">
+                    <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                    <div class="description">
+                      <p class="text">Diana was thrilled with the excellent customer service and quality. Lorem ipsum dolor sit amet...</p>
+                      
+                    </div>
+                  </div>
+                  <button class="read-more">Read More</button>
+                  <button class="read-less">Read less</button>
+                </div>
+               </div>
+              
+            
+              <!-- Item 5 -->
+               <div class="itemc">
+                <div class="item">
+                  <div class="top-content">
+                    <div class="name">
+                      <img src="./index_files/img5.webp" alt="User" class="user-image">
+                    <span class="user-name">Eve</span>
+                    </div>
+                    
+                    <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+  
+                  </div>
+                  <div class="bottom-content">
+                    <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                    <div class="description">
+                      <p class="text">Eve had a very positive experience, but noted some minor issues. Lorem ipsum dolor sit amet...</p>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+                <button class="read-more">Read More</button>
+                  <button class="read-less">Read less</button>
+               </div>
+             
+            
+              <!-- Item 6 -->
+               <div class="itemc">
+                <div class="item">
+                  <div class="top-content">
+                    <div class="name">
+                      <img src="./index_files/img6.webp" alt="User" class="user-image">
+                    <span class="user-name">Frank</span>
+                    </div>
+                    
+                    <img src="./index_files/color+google+media+network+social+icon-1320086080668511532.png" class="google-icon">
+  
+                  </div>
+                  <div class="bottom-content">
+                    <div class="stars ">                        <i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i><i class="fa-solid fa-star fa-xl" style="color: #FFD43B;"></i>
+</div>
+                    <div class="description">
+                      <p class="text">Frank is incredibly satisfied with the service and highly recommends it to others. Lorem ipsum dolor sit amet...</p>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+                <button class="read-more">Read More</button>
+                  <button class="read-less">Read less</button>
+               </div>
+              <div class="itemc">
+                <div class="item"></div>
+              </div>
+              
+            </div>
+            <div class="button1" style="top: 354.2px;">
+              <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+    
+            
+        </div>
+        
+    </div>
+    
+          
+
+  
+    <div class="slider-container">
+      <h2 class="slider-heading">Our Simple Process</h2>
+      <div class="slider-track">
+        <!-- Step 1 -->
+        <div class="slider-item active">
+          <div class="slider-image">
+            <img src="./index_files/consultation.webp" alt="Step 1 Image">
+          </div>
+          <div class="slider-content">
+            <h3 class="step-title">Step 1</h3>
+            <h4 class="subheading">Getting Started</h4>
+            <p class="step-description">
+              Begin with a free consultation. We will discuss your needs and plan accordingly. 
+              Our team ensures that we understand every detail of your requirements to deliver the best results.
+              This is the stage where we align expectations and define the overall project goals.
+            </p>
+          </div>
+        </div>
+    
+        <!-- Step 2 -->
+        <div class="slider-item reverse active">
+          <div class="slider-content">
+            <h3 class="step-title">Step 2</h3>
+            <h4 class="subheading">Project Design</h4>
+            <p class="step-description">
+              We create a detailed design plan and gather all necessary approvals. 
+              Our designers work meticulously to craft a plan tailored to your vision, considering functionality and aesthetics. 
+              We also incorporate any feedback you provide to refine the design.
+            </p>
+          </div>
+          <div class="slider-image">
+            <img src="./index_files/design.webp" alt="Step 2 Image">
+          </div>
+        </div>
+    
+        <!-- Step 3 -->
+        <div class="slider-item active">
+          <div class="slider-image">
+            <img src="./index_files/construction.webp" alt="Step 3 Image">
+          </div>
+          <div class="slider-content">
+            <h3 class="step-title">Step 3</h3>
+            <h4 class="subheading">Construction</h4>
+            <p class="step-description">
+              Our team works to build your project according to the approved design. 
+              Using high-quality materials and expert craftsmanship, we ensure the project meets the highest standards. 
+              Regular updates keep you informed every step of the way.
+            </p>
+          </div>
+        </div>
+    
+        <!-- Step 4 -->
+        <div class="slider-item reverse active">
+          <div class="slider-content">
+            <h3 class="step-title">Step 4</h3>
+            <h4 class="subheading">Final Inspection</h4>
+            <p class="step-description">
+              We inspect the project to ensure it meets your expectations and standards. 
+              This includes a thorough quality check, addressing any concerns, and making final adjustments if necessary. 
+              Your satisfaction is our priority.
+            </p>
+          </div>
+          <div class="slider-image">
+            <img src="./index_files/inspection-engineers.png" alt="Step 4 Image">
+          </div>
+        </div>
+    
+        <!-- Step 5 -->
+        <div class="slider-item active">
+          <div class="slider-image">
+            <img src="./index_files/kitchenimg5.webp" alt="Step 5 Image">
+          </div>
+          <div class="slider-content">
+            <h3 class="step-title">Step 5</h3>
+            <h4 class="subheading">Completion</h4>
+            <p class="step-description">
+              Once everything is complete, we hand over the finished project for you to enjoy. 
+              This stage includes a walkthrough to familiarize you with the completed work. 
+              We ensure you're fully satisfied before concluding the process.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+
+<div class="background-container">
+  <div class="container5">
+    <div class="contact-section">
+      <h2>Start Your Home Transformation Today</h2>
+      <p>Get in touch to receive expert advice and a complimentary consultation and quote for your project.</p>
+      <a href="tel:+1234567890" class="contact-link">Phone: +123-456-7890</a>
+      <br>
+      <a href="mailto:info@example.com" class="contact-link">Email: info@example.com</a>
+      <div class="social-icons">
+        <a href="http://localhost:8080/#" aria-label="Instagram" class="so"><i class="fab fa-instagram "></i></a>
+        <a href="http://localhost:8080/#" aria-label="LinkedIn" class="so"><i class="fab fa-linkedin "></i></a>
+        <a href="http://localhost:8080/#" aria-label="Facebook" class="so"><i class="fab fa-facebook "></i></a>
+        <a href="http://localhost:8080/#" aria-label="TikTok" class="so"><i class="fab fa-tiktok "></i></a>
+      </div>
+    </div>
+    <div class="formbox">
+      <div class="form-container">
+        <form>
+          <div class="form-group">
+            <input type="text" id="full-name" required="">
+            <label for="full-name">Full Name</label>
+          </div>
+          <div class="form-group">
+            <input type="tel" id="phone-number" required="">
+            <label for="phone-number">Phone Number</label>
+          </div>
+          <div class="form-group">
+            <input type="email" id="email" required="">
+            <label for="email">Email</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" rows="6" required=""></textarea>
+            <label for="message">Message</label>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+   
+  </div>
+</div>
+<footer class="footer">
+  <div class="container111">
+    <div class="row row-1">
+      <!-- Logo Section -->
+      <div class="footer-col logo-col">
+        <a href="http://localhost:8080/#">
+          <img src="./index_files/66826ec9086f4f8f2efe7251_1 (1).png" alt="Company Logo" class="footer-logo">
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="http://localhost:8080/#">About</a></li>
+          <li><a href="http://localhost:8080/#">Reviews</a></li>
+          <li><a href="http://localhost:8080/#">FAQs</a></li>
+          <li><a href="http://localhost:8080/#">Events</a></li>
+          <li><a href="http://localhost:8080/#">In The Press</a></li>
+          <li><a href="http://localhost:8080/#">Careers</a></li>
+          <li><a href="http://localhost:8080/#">Referral Program</a></li>
+          <li><a href="http://localhost:8080/#">Warranty</a></li>
+          <li><a href="http://localhost:8080/#">Warranty Claim</a></li>
+          <li><a href="http://localhost:8080/#">Get a FREE Quote</a></li>
+        </ul>
+      </div>
+
+      <!-- Full Remodeling -->
+      <div class="footer-col">
+        <h4>Full Home Remodeling</h4>
+        <ul>
+          <li><a href="http://localhost:8080/#">Interior Design</a></li>
+          <li><a href="http://localhost:8080/#">Home Painting</a></li>
+          <li><a href="http://localhost:8080/#">Home Flooring</a></li>
+          <li><a href="http://localhost:8080/#">Go Green Options</a></li>
+        </ul>
+      </div>
+
+      <!-- Bathroom Remodeling -->
+      <div class="footer-col">
+        <h4>Bathroom Remodeling</h4>
+        <ul>
+          <li><a href="http://localhost:8080/#">Bathroom Renovation</a></li>
+          <li><a href="http://localhost:8080/#">Bathroom Sinks</a></li>
+          <li><a href="http://localhost:8080/#">Bathtub Showroom</a></li>
+          <li><a href="http://localhost:8080/#">Shower Systems</a></li>
+          <li><a href="http://localhost:8080/#">Toilet Showroom</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row row-2">
+      <!-- Empty Column -->
+      <div class="footer-col empty"></div>
+      
+      <!-- Contact Us -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul>
+          <li><a href="http://localhost:8080/#"><i class="fas fa-map-marker-alt"></i> 123 Main Street, NYC, NY 10001</a></li>
+          <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 234-567-890</a></li>
+          <li><a href="mailto:info@example.com"><i class="fas fa-envelope"></i> info@example.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Follow Us -->
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="social-links">
+          <a href="http://localhost:8080/#"><i class="fab fa-facebook-f"></i></a>
+          <a href="http://localhost:8080/#"><i class="fab fa-twitter"></i></a>
+          <a href="http://localhost:8080/#"><i class="fab fa-instagram"></i></a>
+          <a href="http://localhost:8080/#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Empty Column -->
+      <div class="footer-col empty"></div>
+    </div>
+  </div>
+</footer>
+
+
+    
+
+    <script src="./index_files/hr.js.download"></script>
+
+
+</body></html>
