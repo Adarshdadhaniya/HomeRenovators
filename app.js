@@ -9,7 +9,7 @@ const engine=require('ejs-mate');
 
 
 
-
+pp.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get("/", (req, res) => {
-  res.render("hr.ejs")
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 
